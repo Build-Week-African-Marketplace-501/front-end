@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import * as yup from 'yup';
+import './Register.css';
 
 const initialFormValues = {
   name: '',
@@ -54,10 +55,10 @@ export default function Register() {
   }, [formValues])
 
   return (
-    <div>
+    <div className='container'>
       <h1>User Registration</h1>
-      <form onSubmit={onSubmit}>
-        <label>Name</label>
+      <form onSubmit={onSubmit} className='register-form'>
+        <label>Name: </label>
           <input
             type='text'
             name='name'
@@ -65,7 +66,7 @@ export default function Register() {
             onChange={onChange}
           />
     
-        <label>Email</label>
+        <label>Email: </label>
           <input
             type='email'
             name='email'
@@ -73,21 +74,23 @@ export default function Register() {
             onChange={onChange}
           />
         
-        <label>Password</label>
+        <label>Password: </label>
           <input
             type='password'
             name='password'
             value={formValues.password}
             onChange={onChange}
-          />
-
-          <button disabled={disabled}>Register</button>
+          /><br />
 
           <div className='errors'>
             <div>{errors.name}</div>
             <div>{errors.email}</div>
             <div>{errors.password}</div>
           </div>
+
+          <button disabled={disabled}>Register</button>
+
+          
       </form>
     </div>
   )
