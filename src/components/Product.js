@@ -1,20 +1,22 @@
 import React, {useState, useEffect} from 'react'
 import axiosWithAuth from '../utils/axiosWithAuth'
-const Prodcuts = (props) => {
+import {useParams} from 'react-router-dom'
 
-    const [items, setItems] = useState([])
+const Product = (props) => {
+    const [item, setItem] = useState([])
+    const {id} = useParams()
 
     useEffect(() => {
-        axiosWithAuth().get('https://bw-african-marketplace-501.herokuapp.com/api/items')
+        axiosWithAuth().get(`https://bw-african-marketplace-501.herokuapp.com/api/items/${id}`)
         .then(res => {
             console.log(res.data)
-            setItems(res.data)
+            setItem(res.data)
         })
         .catch(err => {
             console.log(err)
         })
     }, [])
-
+    
     return (
         <div>
             
@@ -22,4 +24,4 @@ const Prodcuts = (props) => {
     )
 }
 
-export default Prodcuts
+export default Product
