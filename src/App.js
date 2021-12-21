@@ -1,11 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import Register from './Register';
+import ProductForm from './ProductForm';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <ProductForm />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
