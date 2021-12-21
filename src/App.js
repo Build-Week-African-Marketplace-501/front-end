@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Register from './Register';
-import ProductForm from './ProductForm';
+
 
 function App() {
   return (
@@ -21,8 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
-
-      <Register />
+      <Login />
     </div>
   );
 }
