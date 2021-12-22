@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axiosWithAuth from '../utils/axiosWithAuth'
 
 import Product from './Product'
+import ProductForm from './ProductForm'
 
 const Products = (props) => {
 
@@ -18,6 +19,14 @@ const Products = (props) => {
             console.log(err)
         })
     }, [])
+
+    const postNewItem = newItem => {
+        axiosWithAuth().post('https://bw-african-marketplace-501.herokuapp.com/api/items', newItem)
+            .then(res => {
+                setItems([res.data, ...items]);
+                console.log(res.data, items)
+            }).catch(err => console.error(err))
+    }
 
     return (
         <div className='products container'>
