@@ -3,20 +3,17 @@ import * as yup from 'yup';
 import '../Register.css';
 
 const initialFormValues = {
-  name: '',
-  email: '',
+  username: '',
   password: ''
 }
 
 const initialErrors = {
-  name: '',
-  email: '',
+  username: '',
   password: ''
 }
 
 const validationSchema = yup.object().shape({
-  name: yup.string().trim().required('Name is required').min(3, 'Name has to be at least three characters'),
-  email: yup.string().email('A valid Email is required').required('Email is required'),
+  username: yup.string().trim().required('Name is required').min(3, 'Name has to be at least three characters'),
   password: yup.string().required('Password is required').min(6, 'Password has to be at least six characters')
 })
 
@@ -41,8 +38,7 @@ export default function Register() {
   const onSubmit = event => {
     event.preventDefault();
     const newUser = {
-      name: formValues.name.trim(),
-      email: formValues.email,
+      username: formValues.username.trim(),
       password: formValues.password.trim()
     }
 
@@ -58,19 +54,11 @@ export default function Register() {
     <div className='container'>
       <h1>User Registration</h1>
       <form onSubmit={onSubmit} className='register-form'>
-        <label>Name: </label>
+        <label>Username: </label>
           <input
             type='text'
-            name='name'
+            name='username'
             value={formValues.name}
-            onChange={onChange}
-          />
-    
-        <label>Email: </label>
-          <input
-            type='email'
-            name='email'
-            value={formValues.email}
             onChange={onChange}
           />
         
@@ -83,14 +71,12 @@ export default function Register() {
           /><br />
 
           <div className='errors'>
-            <div>{errors.name}</div>
-            <div>{errors.email}</div>
+            <div>{errors.username}</div>
             <div>{errors.password}</div>
           </div>
 
           <button disabled={disabled}>Register</button>
 
-          
       </form>
     </div>
   )
