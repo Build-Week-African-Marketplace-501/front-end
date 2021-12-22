@@ -1,21 +1,50 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axiosWithAuth from '../utils/axiosWithAuth';
+
+const initialFormValues = {
+    product: '',
+    description: '',
+    price: '',
+}
 
 export default function ProductForm (props) {
 
-    const { submit } = props;
+    // const [product, setProduct] = useState('');
+    // const [price, setPrice] = useState('');
+    // const [description, setDescription] = useState('');
+    const [formValues, setFormValues] = useState(initialFormValues);
 
-    const [product, setProduct] = useState([]);
-    const [price, setPrice] = useState([]);
-    const [description, setDescription] = useState([]);
+    const [items, setItems] = useState([]);
 
-    const onSubmit = evt => {
-        console.log(product, price, description);
-        evt.preventDefault()
-        submit()
+    const postNewItem = newItem => {
+        axiosWithAuth().post('https://bw-african-marketplace-501.herokuapp.com/api/items', newItem)
+            .then(res => {
+                setItems([res.data, ...items]);
+                console.log(res.data, items)
+            }).catch(err => console.error(err))
     }
 
     const validateForm = () => {
-        return product.length > 0 && price.length > 0;
+        return formValues.product.length > 0 && formValues.price.length > 0 && formValues.description.length > 0;
+      }
+
+    const onChange = event => {
+        const {name, value} = event.target;
+        validateForm();
+        setFormValues({...formValues, [name]: value});
+      }
+
+    const onSubmit = evt => {
+        const newItem = {
+            product: formValues.product,
+            description: formValues.description,
+            price: formValues.price,
+        }
+        
+        console.log(newItem);
+        evt.preventDefault()
+        postNewItem(newItem)
     }
 
     return (
@@ -27,34 +56,37 @@ export default function ProductForm (props) {
 
                     <label>Product
                         <input 
+                            name='product'
                             type='text'
-                            value={product}
-                            onChange={(evt) => setProduct(evt.target.value)}
+                            value={formValues.product}
+                            onChange={onChange}
                             id='product input'
                         />
                     </label>
 
                     <label>Description
                         <input 
+                            name='description'
                             type='text'
-                            value={description}
-                            onChange={(evt) => setDescription(evt.target.value)}
+                            value={formValues.description}
+                            onChange={onChange}
                             id='price input'
                         />
                     </label>
 
                     <label>Price
-                        <input 
+                        <input
+                            name='price' 
                             type='text'
-                            value={price}
-                            onChange={(evt) => setPrice(evt.target.value)}
+                            value={formValues.price}
+                            onChange={onChange}
                             id='price input'
                         />
                     </label>
                 </div>
 
                 <button className='form-group submit' id='submit-button' disabled={!validateForm()} >
-                    Add Product
+                    <Link to='/products'>Add Product</Link>
                 </button>
             
             </div>
