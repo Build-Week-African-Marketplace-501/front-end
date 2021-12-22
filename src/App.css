@@ -36,3 +36,54 @@
     transform: rotate(360deg);
   }
 }
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 2%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.right-links {
+    width: 20vw;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.homeInfo {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.homeInfo h2 {
+  font-size: 2.5vw;
+}
+.homeInfo p {
+  font-size: 1.2vw;
+}
+
+.homeInfo button {
+  background-color: #cf1515;
+  color: aliceblue;
+  border: none;
+  border-radius: 4px;
+  width: 20vw;
+  height: 5vh;
+  font-size: 2vw ;
+}
+.something {
+  display: flex;
+  margin-top: 10%;
+}
+
+.something img {
+  width: 50vw;
+}
+
+
