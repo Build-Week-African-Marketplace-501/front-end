@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import axiosWithAuth from '../utils/axiosWithAuth'
 const Prodcuts = (props) => {
 
@@ -17,6 +18,7 @@ const Prodcuts = (props) => {
 
     return (
         <div>
+            <button><Link to='/addproduct'>Add a Product</Link></button>
             
         </div>
     )
