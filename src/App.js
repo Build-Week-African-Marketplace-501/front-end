@@ -18,7 +18,7 @@ function App() {
         <Route exact path='/login' component={Login}/>
         <Route path='/register' component={Register}/>
         {/* change back to PrivateRoute 👇 */}
-        <Route path='/products' component={Products}/>
+        <Route exact path='/products' component={Products}/>
         {/* change back to PrivateRoute 👇 */} 
         <Route path='/addproduct' component={ProductForm}/>
         {/* change back to PrivateRoute 👇 */}

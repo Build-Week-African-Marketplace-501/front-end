@@ -18,7 +18,7 @@ export default function ProductForm (props) {
     const [items, setItems] = useState([]);
 
     const postNewItem = newItem => {
-        axiosWithAuth().post('https://bw-african-marketplace-501.herokuapp.com/api/items', newItem)
+        axiosWithAuth().post('/items', newItem)
             .then(res => {
                 setItems([res.data, ...items]);
                 console.log(res.data, items)
@@ -36,6 +36,7 @@ export default function ProductForm (props) {
       }
 
     const onSubmit = evt => {
+        evt.preventDefault()
         const newItem = {
             product: formValues.product,
             description: formValues.description,
@@ -43,7 +44,7 @@ export default function ProductForm (props) {
         }
         
         console.log(newItem);
-        evt.preventDefault()
+
         postNewItem(newItem)
     }
 

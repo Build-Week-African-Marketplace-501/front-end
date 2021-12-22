@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from "react";
 import * as yup from 'yup';
 import '../Register.css';
+import axios from "axios";
+import {useHistory} from 'react-router-dom'
 
-const initialFormValues = {
+const initialValues = {
   username: '',
   password: ''
 }
@@ -18,9 +20,11 @@ const validationSchema = yup.object().shape({
 })
 
 export default function Register() {
-  const [formValues, setFormValues] = useState(initialFormValues)
+  const [user, setUser] = useState(initialValues)
   const [errors, setErrors] = useState({initialErrors})
   const [disabled, setDisabled] = useState(false);
+
+  const {push} = useHistory()
 
   const validation = (name, value) => {
     yup.reach(validationSchema, name)
@@ -32,23 +36,25 @@ export default function Register() {
   const onChange = event => {
     const {name, value} = event.target;
     validation(name, value);
-    setFormValues({...formValues, [name]: value});
+    setUser({...user, [name]: value});
   }
 
   const onSubmit = event => {
     event.preventDefault();
-    const newUser = {
-      username: formValues.username.trim(),
-      password: formValues.password.trim()
-    }
+    axios.post('https://bw-african-marketplace-501.herokuapp.com/api/auth/register', user)
+    .then(res => {
+      setUser(initialValues)
+      push('/login')
 
-    console.log(newUser);
-    setFormValues(initialFormValues);
+    })
+    .catch(err => {
+      console.error(err)
+    })
   }
 
   useEffect(() => {
-    validationSchema.isValid(formValues).then(valid => setDisabled(!valid))
-  }, [formValues])
+    validationSchema.isValid(user).then(valid => setDisabled(!valid))
+  }, [user])
 
   return (
     <div className='container'>
@@ -58,7 +64,7 @@ export default function Register() {
           <input
             type='text'
             name='username'
-            value={formValues.name}
+            value={user.name}
             onChange={onChange}
           />
         
@@ -66,7 +72,7 @@ export default function Register() {
           <input
             type='password'
             name='password'
-            value={formValues.password}
+            value={user.password}
             onChange={onChange}
           /><br />
 

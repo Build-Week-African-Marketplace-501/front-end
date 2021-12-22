@@ -10,7 +10,7 @@ const Products = (props) => {
     const [items, setItems] = useState([])
 
     useEffect(() => {
-        axiosWithAuth().get('https://bw-african-marketplace-501.herokuapp.com/api/items')
+        axiosWithAuth().get('/items')
         .then(res => {
             console.log(res.data)
             setItems(res.data)
@@ -21,7 +21,7 @@ const Products = (props) => {
     }, [])
 
     const postNewItem = newItem => {
-        axiosWithAuth().post('https://bw-african-marketplace-501.herokuapp.com/api/items', newItem)
+        axiosWithAuth().post('/items', newItem)
             .then(res => {
                 setItems([res.data, ...items]);
                 console.log(res.data, items)
@@ -32,9 +32,9 @@ const Products = (props) => {
         <div className='products container'>
 
             {
-                items.map(itm => {
+                items && items.map(itm => {
                     return (
-                        <Product key={itm.item_id} />
+                        <Product key={itm.item_id} item={itm} />
                     )
                 })
             }

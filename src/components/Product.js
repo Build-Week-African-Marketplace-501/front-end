@@ -3,18 +3,21 @@ import axiosWithAuth from '../utils/axiosWithAuth'
 import {useParams} from 'react-router-dom'
 
 const Product = (props) => {
-    const [item, setItem] = useState([])
+    const [item, setItem] = useState({})
     const {id} = useParams()
 
     useEffect(() => {
-        axiosWithAuth().get(`https://bw-african-marketplace-501.herokuapp.com/api/items/${id}`)
+        if (id) {axiosWithAuth().get(`/items/${id}`)
         .then(res => {
             console.log(res.data)
-            setItem(res.data)
+            setItem(res.data.item)
         })
         .catch(err => {
             console.log(err)
         })
+    } else {
+        setItem(props.item) 
+    }
     }, [])
     
     return (
