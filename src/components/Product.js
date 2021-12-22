@@ -18,8 +18,10 @@ const Product = (props) => {
     }, [])
     
     return (
-        <div>
-            
+        <div className='product container'>
+            <h2>{item.item_name}</h2>
+            <p>Description: {item.item_description}</p>
+            <p>Price: {item.item_price}</p>
         </div>
     )
 }

@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import axiosWithAuth from '../utils/axiosWithAuth'
-const Prodcuts = (props) => {
+
+import Product from './Product'
+
+const Products = (props) => {
 
     const [items, setItems] = useState([])
 
@@ -17,11 +20,20 @@ const Prodcuts = (props) => {
     }, [])
 
     return (
-        <div>
+        <div className='products container'>
+
+            {
+                items.map(itm => {
+                    return (
+                        <Product key={itm.item_id} />
+                    )
+                })
+            }
+
             <button><Link to='/addproduct'>Add a Product</Link></button>
             
         </div>
     )
 }
 
-export default Prodcuts
+export default Products;

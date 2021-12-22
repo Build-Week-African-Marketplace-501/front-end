@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-// import { useRouteMatch } from 'react-router-dom'
 
 export default function ProductForm (props) {
-    const [product, setProduct] = useState('');
-    const [price, setPrice] = useState('');
 
-    // const { url } = useRouteMatch;
+    const { submit } = props;
+
+    const [product, setProduct] = useState([]);
+    const [price, setPrice] = useState([]);
+    const [description, setDescription] = useState([]);
 
     const onSubmit = evt => {
-        console.log(product, price);
+        console.log(product, price, description);
         evt.preventDefault()
+        submit()
     }
 
     const validateForm = () => {
@@ -32,6 +34,15 @@ export default function ProductForm (props) {
                         />
                     </label>
 
+                    <label>Description
+                        <input 
+                            type='text'
+                            value={description}
+                            onChange={(evt) => setDescription(evt.target.value)}
+                            id='price input'
+                        />
+                    </label>
+
                     <label>Price
                         <input 
                             type='text'
@@ -42,7 +53,7 @@ export default function ProductForm (props) {
                     </label>
                 </div>
 
-                <button className='form-group submit' id='submit-button' disabled={!validateForm()}>
+                <button className='form-group submit' id='submit-button' disabled={!validateForm()} >
                     Add Product
                 </button>
             

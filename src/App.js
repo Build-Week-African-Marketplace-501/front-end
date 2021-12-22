@@ -17,10 +17,14 @@ function App() {
         <Route exact path='/' component={Home}/>
         <Route exact path='/login' component={Login}/>
         <Route path='/register' component={Register}/>
+        {/* change back to PrivateRoute 👇 */}
         <Route path='/products' component={Products}/>
+        {/* change back to PrivateRoute 👇 */} 
         <Route path='/addproduct' component={ProductForm}/>
-        <PrivateRoute path='/products/:id' component={Product}/>
-        <PrivateRoute path='/logout' component={Logout}/>
+        {/* change back to PrivateRoute 👇 */}
+        <Route path='/products/:id' component={Product}/>
+        {/* change back to PrivateRoute 👇 */}
+        <Route path='/logout' component={Logout}/>
       </Switch>
     </div>
   );
