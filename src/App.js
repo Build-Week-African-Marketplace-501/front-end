@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import Register from './components/Register';
 import Home from './components/Home'
 import Navbar from './components/Navbar'
