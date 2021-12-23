@@ -60,22 +60,24 @@ export default function Register() {
     <div className='container'>
       <h1>User Registration</h1>
       <form onSubmit={onSubmit} className='register-form'>
-        <label>Username: </label>
-          <input
-            type='text'
-            name='username'
-            value={user.name}
-            onChange={onChange}
-          />
         
-        <label>Password: </label>
-          <input
-            type='password'
-            name='password'
-            value={user.password}
-            onChange={onChange}
-          /><br />
-
+          <label>Username: </label>
+            <input
+              type='text'
+              name='username'
+              value={user.name}
+              onChange={onChange}
+            />
+          
+        
+          <label>Password: </label>
+            <input
+              type='password'
+              name='password'
+              value={user.password}
+              onChange={onChange}
+            /><br />
+          
           <div className='errors'>
             <div>{errors.username}</div>
             <div>{errors.password}</div>
