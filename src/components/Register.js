@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import * as yup from 'yup';
-import '../Register.css';
+import '../styles/Register.css';
 import axios from "axios";
 import {useHistory} from 'react-router-dom'
 
