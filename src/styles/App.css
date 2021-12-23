@@ -46,12 +46,15 @@ nav {
 
 a {
     text-decoration: none;
+    color: black;
+    font-size: 2vw;
 }
 
 .right-links {
-    width: 20vw;
+    width: 30vw;
     display: flex;
     justify-content: space-evenly;
+    border: 1px solid red
 }
 
 .homeInfo {

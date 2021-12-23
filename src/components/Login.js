@@ -29,6 +29,7 @@ export default function Login() {
       console.log(res)
       localStorage.setItem('token', res.data.token)
       push('/products')
+      window.location.reload()
 
     })
     .catch(err => {

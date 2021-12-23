@@ -7,6 +7,7 @@ const Logout = (props)=> {
         const token = localStorage.getItem("token")
         localStorage.removeItem('token')
         push('./login')
+        window.location.reload()
     }, [])
     
     return(<div></div>);
