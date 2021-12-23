@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
-
+import {useHistory} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 const initialFormValues = {
     product: '',
     description: '',
-    price: '',
+    price: 0,
+    location: ''
 }
 
 export default function ProductForm (props) {
@@ -13,39 +14,47 @@ export default function ProductForm (props) {
     // const [product, setProduct] = useState('');
     // const [price, setPrice] = useState('');
     // const [description, setDescription] = useState('');
+    const {push} = useHistory()
     const [formValues, setFormValues] = useState(initialFormValues);
 
-    const [items, setItems] = useState([]);
-
+    const {id} = useParams()
     const postNewItem = newItem => {
-        axiosWithAuth().post('/items', newItem)
+        axiosWithAuth().post(`/items`, newItem)
             .then(res => {
-                setItems([res.data, ...items]);
-                console.log(res.data, items)
-            }).catch(err => console.error(err))
+                console.log(res)
+                push('/products')
+            })
+            .catch(err => {
+                console.error(err)
+            })
     }
 
-    const validateForm = () => {
-        return formValues.product.length > 0 && formValues.price.length > 0 && formValues.description.length > 0;
-      }
+    // const validateForm = () => {
+    //     return formValues.product.length > 0 && formValues.price.length > 0 && formValues.description.length > 0;
+    //   }
 
     const onChange = event => {
-        const {name, value} = event.target;
-        validateForm();
-        setFormValues({...formValues, [name]: value});
+        // validateForm();
+        setFormValues({
+            ...formValues,
+            [event.target.name]: event.target.value
+        })
       }
 
+
+    const submitItem = () => {
+        const newItem = {
+            item_name: formValues.product,
+            item_description: formValues.description,
+            item_price: formValues.price,
+            item_location: formValues.location
+        }
+        postNewItem(newItem)
+    }
     const onSubmit = evt => {
         evt.preventDefault()
-        const newItem = {
-            product: formValues.product,
-            description: formValues.description,
-            price: formValues.price,
-        }
-        
-        console.log(newItem);
+        submitItem()
 
-        postNewItem(newItem)
     }
 
     return (
@@ -61,7 +70,7 @@ export default function ProductForm (props) {
                             type='text'
                             value={formValues.product}
                             onChange={onChange}
-                            id='product input'
+                            id='product-input'
                         />
                     </label>
 
@@ -71,7 +80,7 @@ export default function ProductForm (props) {
                             type='text'
                             value={formValues.description}
                             onChange={onChange}
-                            id='price input'
+                            id='price-input'
                         />
                     </label>
 
@@ -81,13 +90,23 @@ export default function ProductForm (props) {
                             type='text'
                             value={formValues.price}
                             onChange={onChange}
-                            id='price input'
+                            id='price-input'
+                        />
+                    </label>
+
+                    <label>Location
+                        <input
+                        name='location' 
+                        type="text"
+                        value={formValues.location}
+                        onChange={onChange}
+                        id='location-input'
                         />
                     </label>
                 </div>
 
-                <button className='form-group submit' id='submit-button' disabled={!validateForm()} >
-                    <Link to='/products'>Add Product</Link>
+                <button className='form-group submit' id='submit-button'>Add Product
+                    {/* <Link to='/products'>Add Product</Link> */}
                 </button>
             
             </div>

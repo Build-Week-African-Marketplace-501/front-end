@@ -2,7 +2,7 @@ import './styles/App.css';
 import Register from './components/Register';
 import Home from './components/Home'
 import Navbar from './components/Navbar'
-import Products from './components/Prodcuts'
+import Products from './components/Products'
 import Product from './components/Product'
 import ProductForm from './components/ProductForm';
 import {Switch, Route} from 'react-router-dom'
@@ -18,11 +18,11 @@ function App() {
         <Route exact path='/login' component={Login}/>
         <Route path='/register' component={Register}/>
         {/* change back to PrivateRoute 👇 */}
-        <Route exact path='/products' component={Products}/>
+        <PrivateRoute exact path='/products' component={Products}/>
         {/* change back to PrivateRoute 👇 */} 
-        <Route path='/addproduct' component={ProductForm}/>
+        <PrivateRoute path='/addproduct' component={ProductForm}/>
         {/* change back to PrivateRoute 👇 */}
-        <Route path='/products/:id' component={Product}/>
+        <PrivateRoute path='/products/:id' component={Product}/>
         {/* change back to PrivateRoute 👇 */}
         <Route path='/logout' component={Logout}/>
       </Switch>

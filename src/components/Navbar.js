@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 const Navbar = () => {
+    const isLoggedIn = localStorage.getItem('token')
     return (
         <div className='navbar'>
             <nav>
@@ -9,7 +10,9 @@ const Navbar = () => {
             </div>
             <div className='right-links'>
             <Link to='/'>Home</Link>
-            <Link to='/login'>Login</Link>
+            {
+                isLoggedIn ? <Link to='/logout'>Logout</Link> : <Link to='/login'>Login</Link>
+            }
             <Link to='/register'>Sign Up</Link>
             </div>
             </nav>
