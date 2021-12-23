@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import axiosWithAuth from '../utils/axiosWithAuth'
-
+import '../styles/Products.css'
 import Product from './Product'
 import ProductForm from './ProductForm'
 
@@ -19,14 +19,6 @@ const Products = (props) => {
             console.log(err)
         })
     }, [])
-
-    const postNewItem = newItem => {
-        axiosWithAuth().post('/items', newItem)
-            .then(res => {
-                setItems([res.data, ...items]);
-                console.log(res.data, items)
-            }).catch(err => console.error(err))
-    }
 
     return (
         <div className='products container'>
