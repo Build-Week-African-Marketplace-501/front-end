@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {useHistory} from 'react-router-dom'
 import {useParams} from 'react-router-dom'
@@ -14,7 +14,6 @@ export default function ProductForm (props) {
     const {push} = useHistory()
     const [formValues, setFormValues] = useState(initialFormValues);
 
-    const {id} = useParams()
     const postNewItem = newItem => {
         axiosWithAuth().post(`/items`, newItem)
             .then(res => {
@@ -51,12 +50,12 @@ export default function ProductForm (props) {
 
     return (
         <form className='form container' onSubmit={onSubmit}>
-            <div className='form-group submit'>
+            <div className='form-group'>
                 <h2>Add a Product</h2>
 
-                <div className='form-group inputs'>
+                <div className='form-group'>
 
-                    <label>Product
+                    <label>Product</label>
                         <input 
                             name='product'
                             type='text'
@@ -64,19 +63,19 @@ export default function ProductForm (props) {
                             onChange={onChange}
                             id='product-input'
                         />
-                    </label>
+                    
 
-                    <label>Description
+                    <label>Description</label>
                         <input 
                             name='description'
                             type='text'
                             value={formValues.description}
                             onChange={onChange}
-                            id='price-input'
+                            id='description-input'
                         />
-                    </label>
+                    
 
-                    <label>Price
+                    <label>Price</label>
                         <input
                             name='price' 
                             type='text'
@@ -84,9 +83,9 @@ export default function ProductForm (props) {
                             onChange={onChange}
                             id='price-input'
                         />
-                    </label>
+                    
 
-                    <label>Location
+                    <label>Location</label>
                         <input
                         name='location' 
                         type="text"
@@ -94,10 +93,10 @@ export default function ProductForm (props) {
                         onChange={onChange}
                         id='location-input'
                         />
-                    </label>
+                    
                 </div>
 
-                <button className='form-group submit' id='submit-button'>
+                <button id='submit-button'>
                     Add Product
                 </button>
             
