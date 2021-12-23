@@ -1,64 +1,70 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+// import Form from "react-bootstrap/Form";
+// import Button from "react-bootstrap/Button";
 import "../styles/Login.css";
-import axios from 'axios'
-import {useHistory} from 'react-router-dom'
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
   const [values, setValues] = useState({
-    username: '',
-    password: ''
+    username: "",
+    password: "",
   });
 
-  const {push} = useHistory()
+  const { push } = useHistory();
 
   const onChange = (e) => {
     setValues({
-      ...values, [e.target.name]: e.target.value
-    })
-  }
+      ...values,
+      [e.target.name]: e.target.value,
+    });
+  };
   function validateForm() {
     return values.username.length > 0 && values.password.length > 0;
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    axios.post('https://bw-african-marketplace-501.herokuapp.com/api/auth/login', values)
-    .then(res => {
-      console.log(res)
-      localStorage.setItem('token', res.data.token)
-      push('/products')
-
-    })
-    .catch(err => {
-      console.error(err)
-    })
+    axios
+      .post(
+        "https://bw-african-marketplace-501.herokuapp.com/api/auth/login",
+        values
+      )
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        push("/products");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   return (
-    <div className="Login">
-          {/* <form onSubmit={handleSubmit}>
+    <div className="container">
+      <form onSubmit={handleSubmit} className="register-form">
+        <h1>Login</h1>
           <label htmlFor="username">Username</label>
-            <input 
-            type="text"
-            id='username'
-            name='username'
-            value={values.username}
-            onChange={onChange}
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={values.username}
+              onChange={onChange}
             />
-          <label htmlFor="password">Password</label>  
-            <input 
-            type="password"
-            id='password'
-            name='password'
-            value={values.password}
-            onChange={onChange}
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={values.password}
+              onChange={onChange}
             />
-           <button disabled={!validateForm()}>Login</button>
-          </form> */}
+        <button disabled={!validateForm()}>Login</button>
+      </form>
 
-      <Form onSubmit={handleSubmit}>
+      {/* <Form onSubmit={handleSubmit} className='register-form'>
         <Form.Group size="lg" controlId="username">
           <Form.Label>Username</Form.Label>
           <Form.Control
@@ -83,7 +89,7 @@ export default function Login() {
         <Button size="lg" type="submit" disabled={!validateForm()}>
           Login
         </Button>
-      </Form>
+      </Form> */}
     </div>
   );
 }

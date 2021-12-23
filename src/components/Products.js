@@ -21,7 +21,8 @@ const Products = (props) => {
     }, [])
 
     return (
-        <div className='products container'>
+        <div className='products-page'>
+        <div className='products-container'>
 
             {
                 items && items.map(itm => {
@@ -31,8 +32,9 @@ const Products = (props) => {
                 })
             }
 
-            <button><Link to='/addproduct'>Add a Product</Link></button>
-            
+        </div>
+
+        <Link to='/addproduct'><button>Add a Product</button></Link>
         </div>
     )
 }

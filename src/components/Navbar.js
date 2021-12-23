@@ -13,6 +13,9 @@ const Navbar = () => {
             {
                 isLoggedIn ? <Link to='/logout'>Logout</Link> : <Link to='/login'>Login</Link>
             }
+            {
+                isLoggedIn ? <Link to='/products'>Products</Link> : ''
+            }
             <Link to='/register'>Sign Up</Link>
             </div>
             </nav>

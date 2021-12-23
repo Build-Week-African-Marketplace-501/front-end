@@ -11,9 +11,6 @@ const initialFormValues = {
 
 export default function ProductForm (props) {
 
-    // const [product, setProduct] = useState('');
-    // const [price, setPrice] = useState('');
-    // const [description, setDescription] = useState('');
     const {push} = useHistory()
     const [formValues, setFormValues] = useState(initialFormValues);
 
@@ -29,12 +26,7 @@ export default function ProductForm (props) {
             })
     }
 
-    // const validateForm = () => {
-    //     return formValues.product.length > 0 && formValues.price.length > 0 && formValues.description.length > 0;
-    //   }
-
     const onChange = event => {
-        // validateForm();
         setFormValues({
             ...formValues,
             [event.target.name]: event.target.value
@@ -105,8 +97,8 @@ export default function ProductForm (props) {
                     </label>
                 </div>
 
-                <button className='form-group submit' id='submit-button'>Add Product
-                    {/* <Link to='/products'>Add Product</Link> */}
+                <button className='form-group submit' id='submit-button'>
+                    Add Product
                 </button>
             
             </div>

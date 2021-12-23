@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import axiosWithAuth from '../utils/axiosWithAuth'
 import {useParams} from 'react-router-dom'
+import defaultImg from '../assets/defaultImg.png'
+import stars from '../assets/stars.png'
 
 const Product = (props) => {
     const [item, setItem] = useState({})
@@ -21,10 +23,12 @@ const Product = (props) => {
     }, [])
     
     return (
-        <div className='product container'>
+        <div className='product'>
             <h2>{item.item_name}</h2>
-            <p>Description: {item.item_description}</p>
-            <p>Price: {item.item_price}</p>
+            <img src={defaultImg} alt="African Spice"/>
+            <p>{item.item_description}</p>
+            <img src={stars} alt="5 stars"/>
+            <p>{item.item_price}</p>
         </div>
     )
 }
