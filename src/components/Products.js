@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import axiosWithAuth from '../utils/axiosWithAuth'
-import '../styles/Products.css'
 import Product from './Product'
-import ProductForm from './ProductForm'
 
 const Products = (props) => {
 
@@ -34,7 +32,7 @@ const Products = (props) => {
 
         </div>
 
-        <Link to='/addproduct'><button>Add a Product</button></Link>
+        <Link to='/addproduct' ><button className='add-product-button'>Add a Product</button></Link>
         </div>
     )
 }

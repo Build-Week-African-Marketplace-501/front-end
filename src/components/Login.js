@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-// import Form from "react-bootstrap/Form";
-// import Button from "react-bootstrap/Button";
-import "../styles/Login.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
@@ -45,51 +42,27 @@ export default function Login() {
     <div className="container">
       <form onSubmit={handleSubmit} className="register-form">
         <h1>Login</h1>
-          <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={values.username}
-              onChange={onChange}
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={values.password}
-              onChange={onChange}
-            />
-        <button disabled={!validateForm()}>Login</button>
+          <div className='form-group'>
+            <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                id="user-input"
+                name="username"
+                value={values.username}
+                onChange={onChange}
+              />
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="pass-input"
+                name="password"
+                value={values.password}
+                onChange={onChange}
+              />
+          </div>
+        <button disabled={!validateForm()} className='login-button'>Login</button>
       </form>
 
-      {/* <Form onSubmit={handleSubmit} className='register-form'>
-        <Form.Group size="lg" controlId="username">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            autoFocus
-            type="text"
-            // id='username'
-            name='username'
-            value={values.username}
-            onChange={onChange}
-          />
-        </Form.Group>
-        <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            // id='password'
-            name='password'
-            value={values.password}
-            onChange={onChange}
-          />
-        </Form.Group>
-        <Button size="lg" type="submit" disabled={!validateForm()}>
-          Login
-        </Button>
-      </Form> */}
     </div>
   );
 }

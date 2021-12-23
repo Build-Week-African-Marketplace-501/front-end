@@ -17,13 +17,9 @@ function App() {
         <Route exact path='/' component={Home}/>
         <Route exact path='/login' component={Login}/>
         <Route path='/register' component={Register}/>
-        {/* change back to PrivateRoute 👇 */}
         <PrivateRoute exact path='/products' component={Products}/>
-        {/* change back to PrivateRoute 👇 */} 
         <PrivateRoute path='/addproduct' component={ProductForm}/>
-        {/* change back to PrivateRoute 👇 */}
         <PrivateRoute path='/products/:id' component={Product}/>
-        {/* change back to PrivateRoute 👇 */}
         <Route path='/logout' component={Logout}/>
       </Switch>
     </div>
