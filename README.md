@@ -17,6 +17,10 @@
   ## Items Endpoints: https://github.com/Build-Week-African-Marketplace-501/back-end/blob/main/docs/ITEMS.md
 
   ## Auth Enpoints: https://github.com/Build-Week-African-Marketplace-501/back-end/blob/main/docs/AUTH.md
+ 
+## Netlify Link
+
+  Link: https://africamarket.netlify.app/
 
 ## TEAM
 
